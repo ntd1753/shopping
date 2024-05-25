@@ -88,7 +88,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($input["password"]);
         $user->save();
         return redirect()->route('auth.login');
-
     }
     public function storeAdminAccount(Request $request){
         $input = $request->all();

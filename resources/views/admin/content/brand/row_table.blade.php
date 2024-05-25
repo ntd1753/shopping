@@ -8,7 +8,7 @@
             <a class="text-slate-500 flex items-center mr-3" href="javascript:;"> <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> {{$item->slug}} </a>
         </td>
         <td class="w-40">
-            <div class="flex items-center justify-center text-danger"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{$item->description}} </div>
+            <div class="flex items-center justify-center text-danger"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {!! $item->description !!} </div>
         </td>
         <td class="table-report__action w-56">
             <div class="flex justify-center items-center">

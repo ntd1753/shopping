@@ -7,6 +7,6 @@ use App\Http\Controllers\Controller;
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.content.category.index');
+        return view('admin.content.index');
     }
 }

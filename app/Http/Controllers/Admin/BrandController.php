@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
@@ -24,8 +25,8 @@ class BrandController extends Controller
         $input = $request->all();
         $brand = new Brand();
         $brand["name"] = $input["brand-name"];
-        $brand["slug"] = $input["brand-slug"];
-        $brand["description"] = $input["description"];
+        $brand["slug"] = $input["slug"] ?? Str::slug($input["brand-name"]);
+        $brand["description"] = $input["description"] ?? "";
         $brand->save();
         return redirect()->route("admin.brand.index");
     }
@@ -39,7 +40,7 @@ class BrandController extends Controller
         if($brand){
             $input = $request->all();
             $brand["name"] = $input["brand-name"];
-            $brand["slug"] = $input["brand-slug"];
+            $brand["slug"] =  Str::slug($input["brand-name"]);
             $brand["description"] = $input["description"];
             $brand->save();
         }

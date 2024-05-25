@@ -68,36 +68,34 @@ class LoginController extends Controller
         return back()->withInput($request->only('email', 'remember'));
 
     }
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
+            $socialUser = Socialite::driver($provider)->user();
+            //dd(Socialite::driver($provider)->user());
+         //Tìm hoặc tạo người dùng mới
+        $user = User::firstOrCreate([
+            'email' => $socialUser->getEmail(),
+        ], [
+            'name' => $socialUser->getName(),
+            'provider' => 'google',
+            'provider_id' => $socialUser->getId(),
+            'avatar' => $socialUser->getAvatar(),
+            'password' => Hash::make(Str::password(24)),
+        ]);
 
+        // Đăng nhập người dùng
+        Auth::login($user, true);
 
-            //$socialUser = Socialite::driver('google')->user();
-            dd(Socialite::driver('google')->user());
-        // Tìm hoặc tạo người dùng mới
-//        $user = User::firstOrCreate([
-//            'email' => $socialUser->getEmail(),
-//        ], [
-//            'name' => $socialUser->getName(),
-//            'provider' => 'google',
-//            'provider_id' => $socialUser->getId(),
-//            'avatar' => $socialUser->getAvatar(),
-//            'password' => Hash::make(Str::password(24)),
-//        ]);
-//
-//        // Đăng nhập người dùng
-//        Auth::login($user, true);
-//
-//        // Script để tắt popup và chuyển hướng
-//        return "<script>
-//                window.opener.location.href = '/home';
-//                window.close();
-//            </script>";
+        // Script để tắt popup và chuyển hướng
+        return "<script>
+                window.opener.location.href = '/home';
+                window.close();
+            </script>";
     }
     function logout()
     {

@@ -5,7 +5,7 @@
     </h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="{{route('admin.brand.add')}}"><button class="btn btn-primary shadow-md mr-2">Add New Brand</button></a>
+            <a href="{{route('admin.category.add',$model_type)}}"><button class="btn btn-primary shadow-md mr-2">Add New Category</button></a>
             <div class="dropdown">
             </div>
             <div class="hidden md:block mx-auto text-slate-500"></div>
@@ -28,7 +28,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                @include('admin.content.brand.row_table',['brands'=>$brands])
+                @include("admin.content.category.row_table",["categories"=>$categories, "level"=>0])
+
                 </tbody>
             </table>
         </div>

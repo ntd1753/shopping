@@ -31,19 +31,7 @@
                         <input id="product-name" type="text" class="form-control" name="brand-name" placeholder="Product name" value="{{$brand->name}}">
                     </div>
                 </div>
-                <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                    <div class="form-label xl:w-64 xl:!mr-10">
-                        <div class="text-left">
-                            <div class="flex items-center">
-                                <div class="font-medium">SLug</div>
-                                <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full mt-3 xl:mt-0 flex-1">
-                        <input id="product-name" type="text" class="form-control" name="brand-slug" value="{{$brand->slug}}" placeholder="brand slug">
-                    </div>
-                </div>
+
                 <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                     <div class="form-label xl:w-64 xl:!mr-10">
                         <div class="text-left">

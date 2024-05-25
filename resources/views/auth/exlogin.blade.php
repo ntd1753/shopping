@@ -113,6 +113,23 @@
             params += ', toolbar=no';
             window.open(url, 'Google Login', params);
         }
+        function loginFacebook() {
+            var width = 600, height = 400;
+            var left = (screen.width - width)/2;
+            var top = (screen.height - height)/2;
+            var url = '/login/facebook'; // Đảm bảo URL này trỏ đến route xử lý Socialite::driver('google')->redirect()
+            var params = 'width=' + width + ', height=' + height;
+            params += ', top=' + top + ', left=' + left;
+            params += ', directories=no';
+            params += ', location=no';
+            params += ', menubar=no';
+            params += ', resizable=no';
+            params += ', scrollbars=no';
+            params += ', status=no';
+            params += ', toolbar=no';
+            window.open(url, 'Google Login', params);
+        }
+    </script>
     </script>
 
 @endsection

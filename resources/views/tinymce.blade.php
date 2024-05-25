@@ -31,7 +31,6 @@
                             <label for="reviewName">SEO  keyword</label>
                             <input type="text" class="form-control" id="reviewName" name="seo_keywords" placeholder="Nhập tiêu đề bài viết ...">
                         </div>
-
                     </div>
                     <div class="row row-cols-2">
                         <div class="">
@@ -82,7 +81,6 @@
             url = url.replace(/^.*\/\/[^\/]+/, ''); // remove domain
             console.log(url)
             document.getElementById('image_label').value = url;
-
         }
     </script>
 
