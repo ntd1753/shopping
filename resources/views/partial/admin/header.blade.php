@@ -178,9 +178,7 @@
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
-                    <div class="font-medium">Keanu Reeves</div>
-                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">Backend Engineer</div>
-                </li>
+                    <div class="font-medium">{{Auth::user()->name}}</div></li>
                 <li>
                     <hr class="dropdown-divider border-white/[0.08]">
                 </li>
@@ -200,8 +198,12 @@
                     <hr class="dropdown-divider border-white/[0.08]">
                 </li>
                 <li>
-                    <a href="/logout" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                    <a href="#" class="dropdown-item hover:bg-white/5" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
                 </li>
+                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </ul>
         </div>
     </div>

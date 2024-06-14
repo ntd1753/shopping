@@ -70,18 +70,14 @@ class CategoryController extends Controller
     {
         $item = Category::find($id);
         if (!$item) return redirect()->back();
-
         $input = $request->all();
         $this->fillData($item, $input, $model_type);
-
         return redirect()->route("admin.category.index", $model_type);
     }
-
     public function destroy($model_type,$id): RedirectResponse
     {
         $item = Category::find($id);
         if (!$item) return redirect()->back();
-
         $item->delete();
         return redirect()->route("admin.category.index", $model_type);
     }

@@ -1,4 +1,4 @@
 @extends('layouts.adminLayout')
 @section('content')
-    sgfhjsdgfhjdgfhjsgfhjsa
+dấdasdadasasdasd
 @endsection

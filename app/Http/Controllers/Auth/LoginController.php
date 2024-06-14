@@ -100,6 +100,19 @@ class LoginController extends Controller
     function logout()
     {
         Auth::logout();
-        redirect();
+        return redirect()->intended('/login');
+    }
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        \Log::info('Session before invalidate:', $request->session()->all());
+
+        // Invalidate the session
+        $request->session()->invalidate();
+
+        // Regenerate CSRF token
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.auth.login'); // Redirect to admin login page
     }
 }

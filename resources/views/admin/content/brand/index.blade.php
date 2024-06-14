@@ -1,11 +1,11 @@
 @extends('layouts.adminLayout')
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">
-        Brands
+        Nhà cung cấp
     </h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="{{route('admin.brand.add')}}"><button class="btn btn-primary shadow-md mr-2">Add New Brand</button></a>
+            <a href="{{route('admin.brand.add')}}"><button class="btn btn-primary shadow-md mr-2">Thêm nhà cung cấp</button></a>
             <div class="dropdown">
             </div>
             <div class="hidden md:block mx-auto text-slate-500"></div>
@@ -21,10 +21,10 @@
             <table class="table table-report -mt-2">
                 <thead>
                 <tr>
-                    <th class="whitespace-nowrap">BRAND NAME</th>
+                    <th class="whitespace-nowrap">Tên nhà cung cấp</th>
                     <th class="whitespace-nowrap">SLUG</th>
-                    <th class="text-center whitespace-nowrap">DESCRIPTION</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+                    <th class="text-center whitespace-nowrap">Mô tả</th>
+                    <th class="text-center whitespace-nowrap">Hành Động</th>
                 </tr>
                 </thead>
                 <tbody>

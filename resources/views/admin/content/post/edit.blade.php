@@ -105,5 +105,7 @@
                 <button type="submit" class="btn py-3 btn-primary w-full md:w-52">Save</button>
             </div>
         </form>
-
+<script>
+    var inputId='';
+</script>
 @endsection

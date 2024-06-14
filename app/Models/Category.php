@@ -22,7 +22,15 @@ class Category extends Model
         return $this->hasMany(Post::class, "category_id","id");
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class,'category_id','id');
+    }
 
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
     // Xoá các category con của một category
     public function deleteChildren(): void{
         foreach ($this->subCategories as $child){

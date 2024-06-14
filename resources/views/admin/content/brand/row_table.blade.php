@@ -1,14 +1,14 @@
 @foreach($brands as $item)
-    <tr class="intro-x">
+    <tr class="intro-x text-base">
         <td>
-            <a href="" class="font-medium whitespace-nowrap">{{$item->name}}</a>
+            <a href="" class="font-medium whitespace-nowrap ">{{$item->name}}</a>
 {{--            <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Tags: Mothercare, Gini &amp; Jony, H&amp;M, Babyhug, Liliput</div>--}}
         </td>
         <td>
-            <a class="text-slate-500 flex items-center mr-3" href="javascript:;"> <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> {{$item->slug}} </a>
+            <a class="text-slate-500 flex items-center mr-3 text-base" href="javascript:;">{{$item->slug}} </a>
         </td>
-        <td class="w-40">
-            <div class="flex items-center justify-center text-danger"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {!! $item->description !!} </div>
+        <td>
+            <div class="flex items-center justify-center text-base"> {!! $item->description !!} </div>
         </td>
         <td class="table-report__action w-56">
             <div class="flex justify-center items-center">
