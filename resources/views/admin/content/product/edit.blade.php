@@ -39,7 +39,15 @@
                                         @else
                                             <option value="{{ $item->id }}">{{$item->name}}</option>
                                     @endif
-
+                                        @if($item->subCategories)
+                                            @foreach($item->subCategories as $subItem)
+                                                @if ($product->category->id==$subItem->id)
+                                                    <option value="{{ $subItem->id }}" selected>{{$subItem->name}}</option>
+                                                @else
+                                                    <option value="{{ $subItem->id }}">{{$subItem->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                 @endforeach
                             </select>
                         </div>

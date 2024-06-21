@@ -41,11 +41,20 @@ class Category extends Model
     public function getAllChildrenIds(){
         return  $this->subCategories()->pluck('id')->toArray();
     }
-    public function productWithSubCategories(){
+    public function productWithSubCategories()
+    {
+        // Lấy tất cả các ID của category con
+        $childCategoryIds = $this->getAllChildrenIds();
+
+        // Thêm ID của category hiện tại vào mảng ID của category con
+        $allCategoryIds = array_merge($childCategoryIds, [$this->id]);
+
+        // Trả về quan hệ với sản phẩm thuộc category hiện tại và các category con
         return $this->hasMany(Product::class, 'category_id')
-            ->whereIn('category_id', $this->getAllChildrenIds())
-            ->orWhere('category_id', $this->id)->take(16);
+            ->whereIn('category_id', $allCategoryIds)
+            ->take(16);
     }
+
 
     // Cấu hình boot cho model category
     public static function boot(): void

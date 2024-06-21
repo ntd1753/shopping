@@ -39,6 +39,11 @@
                             <select id="category" class="form-select" name="category-id">
                                 @foreach($categories as $item)
                                     <option value="{{ $item->id }}">{{$item->name}}</option>
+                                    @if($item->subCategories)
+                                        @foreach($item->subCategories as $subItem)
+                                            <option value="{{ $subItem->id }}">{{$subItem->name}}</option>
+                                        @endforeach
+                                    @endif
                                 @endforeach
 
                             </select>

@@ -34,7 +34,14 @@
         <div class="col-span-9">
             <swiper-container class="mySwiper" slides-per-view="4"
                               navigation="true">
-                    <?php $product=$productCategories[$i]->productWithSubCategories;
+                    <?php $product=$productCategories[$i]->products;
+                    foreach ($productCategories[$i]->subCategories as $subCategory){
+                        if (count($product)>=16) break;
+                        $subCategoryProducts = $subCategory->products;
+                        $subCategoryProducts = $subCategory->products()->take(16 - $product->count())->get();
+                        $product = $product->concat($subCategoryProducts);
+                    }
+
                     ?>
                 @for($j=0;$j<count($product);$j=$j+2)
                     <swiper-slide class="sale-product-week-info border rounded-[20px] mr-5	grid">
@@ -54,7 +61,14 @@
             <div class="col-span-9">
                 <swiper-container class="mySwiper" slides-per-view="4"
                                   navigation="true">
-                        <?php $product=$productCategories[$i+1]->productWithSubCategories;
+                        <?php $product=$productCategories[$i+1]->products;
+                                foreach ($productCategories[$i+1]->subCategories as $subCategory){
+                                    if (count($product)>=16) break;
+                                    $subCategoryProducts = $subCategory->products;
+                                    $subCategoryProducts = $subCategory->products()->take(16 - $product->count())->get();
+                                    $product = $product->concat($subCategoryProducts);
+                                }
+
                         ?>
                     @for($j=0;$j<count($product);$j=$j+2)
                         <swiper-slide class="sale-product-week-info border rounded-[20px] mr-5	grid">
