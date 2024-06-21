@@ -33,23 +33,17 @@ class HomeController extends Controller
     }
 
     function index(){
-        $discountedProducts = Product::where('discount_persent', '>', 0)
-            ->whereDate('updated_at', '>=', now()->startOfWeek())
-            ->whereDate('updated_at', '<=', now()->endOfWeek())
-            ->get();
-        $parentCategory=Category::where('parent_id',0)->get();
-        $allProduct=[];
-        foreach ($parentCategory as $item){
-            $products = $this->getProductsByParentCategory($item->id);
-        };
+        //lấy ra 16 sản phẩm đang giảm giá mới nhất
+        $discountedProducts=Product::where('discount_persent', '>', 0)->orderby('updated_at','DESC')->take(16)->get();
         $banners=Banner::where('status','active')->get();
-        return view('user.home',['discountedProducts'=>$discountedProducts,'banners'=>$banners]);
+        $parentCategories=Category::where('parent_id',0);
+        return view('user.content.home.index',['discountedProducts'=>$discountedProducts,'banners'=>$banners]);
     }
 
     function detailProduct($id){
         $productDetail=Product::find($id);
         if (is_null($productDetail->category->parent)) $relatedProduct=$this->getProductsByParentCategory($productDetail->category_id);
         else $relatedProduct=$this->getProductsByParentCategory($productDetail->category->parent->id);
-        return view('user.productDetail',['productDetail'=>$productDetail, 'relatedProduct' => $relatedProduct]);
+        return view('user.content.product.productDetail',['productDetail'=>$productDetail, 'relatedProduct' => $relatedProduct]);
     }
 }

@@ -38,6 +38,14 @@ class Category extends Model
             $child->delete();
         }
     }
+    public function getAllChildrenIds(){
+        return  $this->subCategories()->pluck('id')->toArray();
+    }
+    public function productWithSubCategories(){
+        return $this->hasMany(Product::class, 'category_id')
+            ->whereIn('category_id', $this->getAllChildrenIds())
+            ->orWhere('category_id', $this->id)->take(16);
+    }
 
     // Cấu hình boot cho model category
     public static function boot(): void

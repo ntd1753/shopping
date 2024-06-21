@@ -40,6 +40,7 @@
                                 @foreach($categories as $item)
                                     <option value="{{ $item->id }}">{{$item->name}}</option>
                                 @endforeach
+
                             </select>
                         </div>
                     </div>
@@ -81,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="w-full mt-3 xl:mt-0 flex-1">
-                                <input id="price" type="number" class="form-control" name="price" placeholder="Product name">
+                                <input id="price" type="number" class="form-control" name="price" placeholder="Giá sản phẩm">
                             </div>
                         </div>
                     </div>
@@ -95,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="w-full mt-3 xl:mt-0 flex-1">
-                                <input id="barcode" type="text" class="form-control" name="quantity" placeholder="Product name">
+                                <input id="barcode" type="text" class="form-control" name="quantity" placeholder="Số lượng">
                             </div>
                         </div>
                         <div class="form-inline items-start flex-col xl:flex-row  first:mt-0 first:pt-0">
@@ -107,7 +108,7 @@
                                 </div>
                             </div>
                             <div class="w-full mt-3 xl:mt-0 flex-1">
-                                <input id="price" type="number" class="form-control" name="discount_persent" placeholder="Product name">
+                                <input id="price" type="number" class="form-control" name="discount_persent" placeholder="Giảm giá ...%">
                             </div>
                         </div>
                     </div>

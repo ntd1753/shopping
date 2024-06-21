@@ -31,6 +31,7 @@ class ConfigController extends Controller
             'hotline' => $request->input('hotline'),
             'email' => $request->input('email'),
             'zalo' => $request->input('zalo'),
+            'description' =>  $request->input('description'),
         ];
         $config['social_links'] = [
             'facebook' => $request->input('facebook'),

@@ -11,5 +11,6 @@
 </div>
 @include("partial.user.footer")
 @include('partial.user.bodyJS')
+
 </body>
 </html>

@@ -61,9 +61,7 @@
                         </a>
                     </div>
                     <div class="text_introduction mt-4 text-center">
-                        Hệ thống trái cây nhập khẩu, đặc biệt trái cây xách tay trực tiếp từ Mỹ, Úc, Nhật, Hàn Quốc,
-                        Newzealand, Đài Loan...như Cherry, Nho sữa, giỏ trái cây và đầy đủ các mặt hàng trái cây
-                        nhập khẩu đáp ứng mọi yêu cầu khác hàng. Chất lượng chuẩn 100%, giá cả phải chăng
+                        {{ config('website.contact.description') }}
                         <br>
                         <b class="text-lg	">
                             Bán hàng chất lượng, uy tín, giá cả hợp lý

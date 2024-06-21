@@ -10,7 +10,6 @@
                 </h2>
             </div>
             <div class="p-5 grid grid-cols-2 gap-6 text-base" >
-
                 <div class="preview" style="display: block;">
                         <div>
                             <label for="regular-form-1" class="form-label">Tên Doanh Nghiệp:</label>
@@ -54,6 +53,12 @@
                     <div class="mt-3">
                         <label for="regular-form-1" class="form-label">Instagram</label>
                         <input id="regular-form-1" type="text" class="form-control" placeholder="Input text" name="instagram" value="{{config('website.social_links.instagram')}}">
+                    </div>
+                </div>
+                <div class="col-span-2">
+                    <div>
+                        <label for="regular-form-1" class="form-label">Mô tả:</label>
+                        <textarea name="description" class="form-control" id="" cols="30" rows="10">{{ config('website.contact.description') }}</textarea>
                     </div>
                 </div>
             </div>

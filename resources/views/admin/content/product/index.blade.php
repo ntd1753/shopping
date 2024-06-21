@@ -41,5 +41,5 @@
     <!-- END: Pagination -->
 </div>
 <!-- BEGIN: Delete Confirmation Modal -->
-
+{{ $products->links('vendor.pagination.tailwind') }}
 @endsection

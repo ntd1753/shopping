@@ -33,7 +33,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -93,7 +93,7 @@ class LoginController extends Controller
 
         // Script để tắt popup và chuyển hướng
         return "<script>
-                window.opener.location.href = '/home';
+                window.opener.location.href = '/';
                 window.close();
             </script>";
     }

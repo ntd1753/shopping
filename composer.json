@@ -8,6 +8,7 @@
         "php": "^8.1",
         "alexusmai/laravel-file-manager": "^3.2",
         "barryvdh/laravel-debugbar": "^3.13",
+        "darryldecode/cart": "^4.2",
         "guzzlehttp/guzzle": "^7.2",
         "hamcrest/hamcrest-php": "^2.0",
         "laravel/framework": "^10.0",

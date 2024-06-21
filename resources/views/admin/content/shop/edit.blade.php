@@ -5,7 +5,7 @@
             Sửa thông tin cửa hàng
         </h2>
     </div>
-    <form action="{{route('admin.shop.store')}}" method="POST">
+    <form action="{{route('admin.shop.update',['id'=>$item->id])}}" method="POST">
         @csrf
         <div class="intro-y box p-5 mt-5">
             <div class="border border-slate-200/60 text-base  rounded-md p-5">

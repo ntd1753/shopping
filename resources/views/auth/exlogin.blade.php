@@ -13,13 +13,13 @@
         </section>
 
     </div>
-    <div class="my-10">
+    <div class="my-10 text-base">
         <div class="hidden">
             <h1 class="title-head">Đăng nhập tài khoản</h1>
         </div>
         <div class="flex items-center m-auto lg:w-2/5">
             <div class="w-full">
-                <div class="page-login shadow-lg w-full">
+                <div class="page-login shadow-lg w-full ">
                     <div id="login" class="grid">
 
                         <div class="col-lg-12 col-md-12 account-content order-lg-last order-md-last order-sm-first order-first ">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="m-auto">
-                                    <a href="/account/register" title="Đăng ký" class="text-[#999]">Đăng ký</a>
+                                    <a href="{{ route('auth.register') }}" title="Đăng ký" class="text-[#999]">Đăng ký</a>
                                 </div>
                             </div>
                             <div id="nd-login">
@@ -38,7 +38,7 @@
                                     @csrf
                                     <div class="form-signup grid grid-cols-1 ">
                                         <div class="w-full my-2.5">
-                                            <label class="block my-1.5">Email<span class="required text-red">*</span></label>
+                                            <label class="block my-1.5 font-bold">Email     <span class="required text-red">*</span></label>
                                             <input placeholder="Nhập Địa chỉ Email" type="email" class="form-control w-full valid border-inherit	 @error('email') is-invalid @enderror p-2 rounded" value="{{ old('email') }}" required autocomplete="email" autofocus name="email" id="customer_email">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                                             @enderror
                                         </div>
                                         <div class="w-full my-2.5">
-                                            <label class="block my-1.5">Mật khẩu<span class="required text-red">*</span></label>
+                                            <label class="block my-1.5 font-bold">Mật khẩu <span class="required text-red">*</span></label>
                                             <input placeholder="Nhập Mật khẩu" type="password" class="form-control w-full valid border-inherit	@error('password') is-invalid @enderror p-2 rounded" value="" name="password" id="customer_password" required autocomplete="current-password">
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -57,11 +57,11 @@
                                         </div>
 
                                         <div class="">
-                                            <p class="text-left recover">
+                                            <p class="text-left recover py-3">
                                                 <a href="#" class="btn-link-style" title="Quên mật khẩu?">Quên mật khẩu?</a>
                                             </p>
-                                            <div class="text-center w-full bg-black hover:bg-[#3ba66b] text-base font-bold	text-white rounded">
-                                                <button class="btn btn-style btn-blues px-4 py-2 rounded-md" type="submit" value="Đăng nhập">Đăng nhập</button>
+                                            <div class="text-center w-full bg-black hover:bg-[#3ba66b] font-bold	text-white rounded">
+                                                    <button class="btn btn-style btn-blues px-4 py-2 rounded-md w-full" type="submit" value="Đăng nhập">Đăng nhập</button>
                                             </div>
                                         </div>
                                         <div>
