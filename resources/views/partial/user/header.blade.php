@@ -8,9 +8,9 @@
                             <div class="wrap_main">
                                 <div class="bg-header-nav">
                                     <nav class="header-nav">
-                                        <ul class="grid grid-cols-5 items-center justify-center text-base 2xl:text-xl lg:justify-start">
+                                        <ul class="grid grid-cols-5 items-center justify-center text-base 2xl:text-base lg:justify-start">
                                             <li class="nav-item">
-                                                <a class="a-img" href="/" title="Trang chủ">
+                                                <a class="a-img hover:text-[#ffb416]" href="{{route('home')}}" title="Trang chủ">
                                                     Trang chủ
                                                 </a>
                                             </li>
@@ -67,17 +67,17 @@
 
                                             </li>
                                             <li class="nav-item">
-                                                <a class="a-img" href="/gioi-thieu" title="Giới thiệu">
+                                                <a class="a-img hover:text-[#ffb416]" href="/gioi-thieu" title="Giới thiệu">
                                                     Giới thiệu
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="a-img" href="/tin-tuc" title="Blog">
+                                                <a class="a-img hover:text-[#ffb416]" href="{{route('user.post.index')}}">
                                                     Blog
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="a-img" href="/lien-he" title="Liên hệ">
+                                                <a class="a-img hover:text-[#ffb416]" href="/lien-he" title="Liên hệ">
                                                     Liên hệ
                                                 </a>
                                             </li>
@@ -106,9 +106,11 @@
                     <div class="col-span-5 header-right grid grid-cols-12">
                         <div class="col-span-4"></div>
                         <div class="nd-searchs col-span-5 ">
-                            <form action="#" method="get" class="nd-header-search-form has-validation-callback" role="search">
+                            <form action="{{route('user.search.index')}}" method="GET">
                                 <div class="relative">
-                                    <input type="text" name="query" class="relative search-auto border p-2 rounded-full" placeholder="Bạn cần tìm gì?" autocomplete="off">
+                                    <input type="text" name="query" class="relative search-auto border p-2 rounded-full"
+                                           placeholder="Bạn cần tìm gì?"
+                                           autocomplete="off">
                                     <input type="hidden" name="type" value="product">
                                     <button class="absolute bg-yellow-400 text-white right-6 px-3 py-2 rounded-full" type="submit" aria-label="Tìm kiếm">
                                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -132,7 +134,7 @@
                                 </li>
                                 <li class="cart-drop">
                                     <div class="icon">
-                                        <a href="javascript:void(0)" class="nd-header-cart flex" aria-label="Xem giỏ hàng" title="Giỏ hàng">
+                                        <a href="#" class="nd-header-cart flex">
                                             <div class="w-[25px] h-[25px] text-black text-2xl text-white">
                                                 <button id="cart-button"
                                                     type="button" data-drawer-target="drawer-right-example"
@@ -143,7 +145,7 @@
                                                 </button>
                                             </div>
                                             <span id="count_cart_item" class="rounded-full bg-yellow-400  text-center text-[10px] w-4 h-4">
-                                               0
+                                               @guest()0 @else {{ count(\Cart::getContent()->toArray())}} @endguest
                                             </span>
                                         </a>
                                     </div>
@@ -173,14 +175,15 @@
                                         </a>
                                     </div>
                                     @guest()
-                                        <div id="dropdownAccount" class="z-10 hidden bg-white divide-y  shadow w-32">
-                                            <ul class="py-2 text-base text-black" aria-labelledby="account">
+                                        <div id="dropdownAccount" class="z-10 hidden bg-white divide-y  shadow w-24">
+                                            <ul class="text-sm text-black" aria-labelledby="account">
 
-                                                <li class="hover-target relative">
-                                                    <a href="/login">Đăng nhập</a>
+                                                <li class="hover-target p-1 relative border-b-2 border-[#e5e6ec] hover:text-[#ffb416] text-center">
+                                                    <a href="{{route('auth.login')}}">Đăng nhập</a>
                                                 </li>
-                                                <li class="hover-target relative">
-                                                    <a href="/login">Đăng kí</a>
+                                                <li class="hover-target p-1 text-sm relative hover:text-[#ffb416] text-center">
+                                                    <a href="{{route('auth.register')}}" id="logout-link">Đăng kí</a>
+
                                                 </li>
                                             </ul>
                                         </div>

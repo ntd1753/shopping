@@ -165,39 +165,24 @@
                         </div>
                         <div class="w-full  xl:mt-0 grid grid-cols-2 gap 4">
                             <div>
-                                <div class="relative">
-                                    <input type="text" name="image[]"   class="form-control" id="image_label-0" value="{!! $product->images[0]->path !!}" >
-                                    <div class="w-1/5 absolute top-0 right-0">
-                                        <button class="btn btn-secondary"  type="button" id="button-image-0" aria-label="Image" aria-describedby="button-image" onclick="addImage(0)">Chọn file</button>
+                                @foreach($product->images as $image)
+                                    <div class="relative mt-3">
+                                        <input type="text" name="image[]"  class="form-control" id="image_label-1" value="{!! $image->path !!}">
+                                        <div class="w-1/5 absolute top-0 right-0">
+                                            <button class="btn btn-secondary"  type="button" id="button-image-1" aria-label="Image" aria-describedby="button-image" onclick="addImage(1)">Chọn file</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="relative mt-3">
-                                    <input type="text" name="image[]"  class="form-control" id="image_label-1" value="{!! $product->images[1]->path !!}">
-                                    <div class="w-1/5 absolute top-0 right-0">
-                                        <button class="btn btn-secondary"  type="button" id="button-image-1" aria-label="Image" aria-describedby="button-image" onclick="addImage(1)">Chọn file</button>
-                                    </div>
-                                </div>
-                                <div class="relative mt-3">
-                                    <input type="text" name="image[]"  class="form-control" id="image_label-2"  value="{!! $product->images[1]->path !!}">
-                                    <div class="w-1/5 absolute top-0 right-0">
-                                        <button class="btn btn-secondary"  type="button" id="button-image-2" aria-label="Image" aria-describedby="button-image" onclick="addImage(2)">Chọn file</button>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
 
                             <div class="flex">
-                                <div>
-                                    <img src="{!! $product->images[0]->path !!}"
-                                         id="img_preview-0" class="ml-5 h-24 w-24">
-                                </div>
-                                <div>
-                                    <img src="{!! $product->images[1]->path !!}"
-                                         id="img_preview-1" class="ml-5 h-24 w-24">
-                                </div>
-                                <div>
-                                    <img src="{!! $product->images[2]->path !!}"
-                                         id="img_preview-2" class="ml-5 h-24 w-24">
-                                </div>
+                                @foreach($product->images as $image)
+                                    <div>
+                                        <img src="{!! $image->path !!}"
+                                             id="img_preview-0" class="ml-5 h-24 w-24">
+                                    </div>
+
+                                @endforeach
 
                             </div>
                         </div>

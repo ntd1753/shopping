@@ -11,7 +11,6 @@ class CartController extends Controller
 {
     public function index(){
         $items = \Cart::getContent()->toArray();
-        dd(count($items));
         $total=\Cart::getSubTotal();
         return view('user.content.cart.index',["cart"=>$items,'totalPrice'=>$total]);
     }
@@ -63,5 +62,8 @@ class CartController extends Controller
             return response()->json(['cart'=>$cart,'totalPrice'=>$totalPrice],200);
         }
         else  return response()->json($cart,200);
+    }
+    function checkout(Request $request){
+
     }
 }

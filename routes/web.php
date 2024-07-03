@@ -4,7 +4,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\User\PayController;
+use App\Http\Controllers\User\PostController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +45,13 @@ Route::group(['prefix'=>'cart','middleware'=>'auth:web'],function(){
     Route::get('getCartItem', [CartController::class, 'getCartItems'])->name('user.cart.getItem');
 });
 
+Route::get('checkout', [OrderController::class, 'index'])->name('user.order.index');
+Route::post('checkout',[OrderController::class, 'placeOrder'])->name('user.order.checkout');
+Route::post('/pay-vnpay',[PayController::class, 'createVnPay'])->name('user.payment.vnpay');
+
+Route::group(['prefix'=>'post'],function(){
+    Route::get('/', [PostController::class, 'index'])->name('user.post.index');
+    Route::get('detail/{id}', [PostController::class, 'detail'])->name('user.post.detail');
+});
+
+Route::get('/search', [SearchController::class, 'search'])->name('user.search.index');

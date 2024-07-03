@@ -59,6 +59,12 @@
             </a>
         </li>
         <li>
+            <a href="{{route('admin.order.index')}}" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="truck"></i> </div>
+                <div class="side-menu__title"> Quản lí Đơn hàng </div>
+            </a>
+        </li>
+        <li>
             <a href="{{route('admin.file.manager')}}" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="hard-drive"></i> </div>
                 <div class="side-menu__title"> File Manager </div>

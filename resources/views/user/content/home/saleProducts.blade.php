@@ -56,136 +56,16 @@
         <swiper-container class="mySwiper"  slides-per-view="4"  grab-cursor="true">
             @for($i=0; $i<count($discountedProducts); $i=$i+2)
                 <swiper-slide class="sale-product-week-info">
-                    <div class="">
-                        <div class="relative rounded-[10px] w-full"
-                             onmouseover="hoverProductDiscountCard({{$discountedProducts[$i]->id}})"
-                             onmouseout="mouseOutProductDiscountCard({{$discountedProducts[$i]->id}})">
-                            <div class="sale-label absolute left-0 top-0 bg-[#f14e18] rounded-tl-[10px]
-                                                rounded-br-[10px] px-2 text-white font-medium text-sm z-10">
-                                <span>-{{$discountedProducts[$i]->discount_persent}}%</span>
-                            </div>
-                            <div class="product-transition h-56 relative">
-                                <div id="preview-img-product-{{$discountedProducts[$i]->id}}"
-                                     class="flex justify-center h-full z-0"
+                    <div>
+                        @include('component.product.productCard',['item'=>$discountedProducts[$i]])
 
-                                >
-                                    <a href="{{route('user.product.detail',['id'=>$discountedProducts[$i]->id])}}">
-                                        <img class="h-full transition-transform hover:scale-105 z-0"
-                                             style="transition: transform 0.5s ease-in-out; width: 160px;"
-                                             src="{{$discountedProducts[$i]->images[0]->path}}">
-                                    </a>
-                                </div>
-                                <div id="product-discount-{{$discountedProducts[$i]->id}}-action"
-                                     class=" absolute hidden bottom-0 w-full
-                                                    transition-transform transform
-                                                     z-10"
-                                     style="transition: transform 1s ease-in-out;">
-                                    <div class="flex items-center mx-auto w-1/2" >
-                                        <div class="wish-button">
-                                            <a href="#">
-                                                <button type="button" class="text-white bg-[#fe0000]
-                                                            hover:bg-[#ffb416]
-                                                            focus:ring-4 focus:outline-none focus:ring-blue-300
-                                                            font-medium rounded-full text-xl p-2.5 text-center inline-flex items-center me-2">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <div class="cart-button">
-                                            <form action="#" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="variantId" value="">
-                                                <button id='cart-button-{{$discountedProducts[$i]->id}}' type="button" class="text-white bg-[#3ba66b]  hover:bg-[#ffb416]
-                                                            focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xl p-2.5
-                                                            text-center inline-flex items-center me-2"
-                                                        onclick="addCartByProductCard({{$discountedProducts[$i+1]->id}})">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </button>
+                    @if(isset($discountedProducts[$i+1]))
+                            @include('component.product.productCard',['item'=>$discountedProducts[$i+1]])
 
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <a href="{{route('user.product.detail',['id'=>$discountedProducts[$i]->id])}}"
-                                   class="pt-2 mb-2 text-ellipsis text-base">
-                                    {{$discountedProducts[$i]->name}}
-                                </a>
-                                <div class="product__price">
-                                    <span class="price text-base font-bold	text-[#fe0000]">{{ number_format($discountedProducts[$i]->price*(1-$discountedProducts[$i]->discount_persent*0.01), 0, ',', '.') }}₫</span>
-                                    <span class="old-price  line-through text-[#999] text-sm ml-2">  {{ number_format($discountedProducts[$i]->price, 0, ',', '.') }} đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        @if(isset($discountedProducts[$i+1]))
-                            <div class="relative rounded-[10px] w-full"
-                                 onmouseover="hoverProductDiscountCard({{(string)$discountedProducts[$i+1]->id}})"
-                                 onmouseout="mouseOutProductDiscountCard({{(string)$discountedProducts[$i+1]->id}})"
-                            >
-                                <div class="sale-label absolute left-0 top-0 bg-[#f14e18] rounded-tl-[10px]
-      rounded-br-[10px] px-2 text-white font-medium text-sm z-10">
-                                    <span>-{{$discountedProducts[$i+1]->discount_persent}}%</span>
-                                </div>
-                                <div class="product-transition h-56 relative">
-                                    <div id="preview-img-product-{{$discountedProducts[$i+1]->id}}"
-                                         class="flex justify-center h-full z-0"
-
-                                    >
-                                        <a href="{{route('user.product.detail',['id'=>$discountedProducts[$i+1]->id])}}">
-                                            <img class="h-full transition-transform hover:scale-105 z-0"
-                                                 style="transition: transform 0.5s ease-in-out; max-width: 160px; height: 100%"
-                                                 src="{{$discountedProducts[$i+1]->images[0]->path}}">
-                                        </a>
-                                    </div>
-                                    <div id="product-discount-{{$discountedProducts[$i+1]->id}}-action"
-                                         class=" absolute hidden bottom-0 w-full
-                                                                  transition-transform transform
-                                                                   z-10 hover:block"
-                                         style="transition: transform 1s ease-in-out;"
-                                    >
-                                        <div class="flex items-center mx-auto w-1/2" >
-                                            <div class="wish-button">
-                                                <a href="#">
-                                                    <button type="button" class="text-white bg-[#fe0000]
-                                                                              hover:bg-[#ffb416]
-                                                                              focus:ring-4 focus:outline-none focus:ring-blue-300
-                                                                              font-medium rounded-full text-xl p-2.5 text-center inline-flex items-center me-2">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </button>
-                                                </a>
-                                            </div>
-                                            <div class="cart-button">
-                                                <form action="#" method="POST" enctype="multipart/form-data">
-                                                    <input type="hidden" name="variantId" value="">
-                                                    <button id="cart-button-{{$discountedProducts[$i+1]->id}}" type="button" class="text-white bg-[#3ba66b]  hover:bg-[#ffb416]
-                                                                                                  focus:ring-4 focus:outline-none focus:ring-blue-300
-                                                                                                   font-medium rounded-full text-xl p-2.5
-                                                                                                  text-center inline-flex items-center me-2"
-                                                    onclick="addCartByProductCard({{$discountedProducts[$i+1]->id}})">
-                                                        <i class="fa-solid fa-cart-shopping"></i>
-                                                    </button>
-
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <a href="{{route('user.product.detail',['id'=>$discountedProducts[$i+1]->id])}}"
-                                       class="pt-2 mb-2 text-ellipsis text-base">
-                                        {{$discountedProducts[$i+1]->name}}
-                                    </a>
-                                    <div class="product__price">
-                                        <span class="price text-base font-bold	text-[#fe0000]">{{ number_format($discountedProducts[$i+1]->price*(1-$discountedProducts[$i+1]->discount_persent*0.01), 0, ',', '.') }}₫</span>
-                                        <span class="old-price  line-through text-[#999] text-sm ml-2">  {{ number_format($discountedProducts[$i+1]->price, 0, ',', '.') }} đ</span>
-                                    </div>
-                                </div>
-                            </div>
                         @endif
-
                     </div>
+
+
                 </swiper-slide>
             @endfor
         </swiper-container>

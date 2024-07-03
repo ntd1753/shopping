@@ -12,6 +12,11 @@
             </div>
         </section>
     </div>
+    @error('quantity')
+    <div class="container mx-auto p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
     <div class="p-4 flex container mx-auto ">
         <h1 class="text-xl">
             Giỏ hàng
@@ -102,7 +107,7 @@
                             <div class="flex justify-end p-1">
                                 <div class="col-span-2">
                                     <button class="button bg-black text-white rounded-[10px] p-4 font-bold hover:bg-[#328c5a]"
-                                            type="button" onclick="window.location.href='/checkout'">Thanh toán ngay</button>
+                                            type="button" onclick="window.location.href='{{route('user.order.index')}}'">Thanh toán ngay</button>
                                 </div>
 
                             </div>

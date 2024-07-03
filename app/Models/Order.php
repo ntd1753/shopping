@@ -15,15 +15,20 @@ class Order extends Model
         'payment_method_id',
         'total',
         'discount',
+        'address',
         'total_amount',
+        'note',
         'status'
     ];
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
     public function paymentMethod()
     {
         return $this->belongsTo(PaymentMethod::class,'payment_method_id','id');
     }
 
-    public function oderItems()
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class,'order_id','id');
     }

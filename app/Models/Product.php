@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Product extends Model
 {
     use HasFactory;
+
     protected $table ="products";
     protected $fillable = [
         'category_id',
@@ -25,6 +27,7 @@ class Product extends Model
         'rating_value',
     ];
     protected $with=['category', 'brand', 'post', 'images'];
+
     public function category()
     {
         return $this->hasOne(Category::class,'id','category_id');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
+use App\Imports\ProductsImport;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Image;
@@ -11,6 +13,8 @@ use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class ProductController extends Controller
 {
@@ -129,5 +133,23 @@ class ProductController extends Controller
         if (!$product) return redirect()->back();
         $product->delete();
         return redirect()->route("admin.product.index");
+    }
+    public function exportExel()
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+    public function importExel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        try {
+            Excel::import(new ProductsImport, request()->file('file'));
+            return back()->with('success', 'Products Imported Successfully');
+        } catch (ValidationException $e) {
+            $failures = $e->failures();
+            return back()->withFailures($failures);
+        }
     }
 }

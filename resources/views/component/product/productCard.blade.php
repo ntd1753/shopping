@@ -15,7 +15,7 @@
                      src="{{$item->images[0]->path}}">
             </a>
             <div id="product-{{$item->id}}-action"
-                 class=" absolute hidden bottom-0
+                 class="product-{{$item->id}}-action absolute hidden bottom-0
                                                     transition-transform transform
                                                      z-10"
                  style="transition: transform 1s ease-in-out;">
@@ -36,7 +36,7 @@
                             <button id="cart-button-{{$item->id}}" type="button" class="text-white bg-[#3ba66b]  hover:bg-[#ffb416]
                                                             focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xl p-2.5
                                                             text-center inline-flex items-center me-2"
-                            onclick="addCartByProductCard({{$item->id}})">
+                                   onclick=" @auth()addCartByProductCard({{$item->id}}) @else window.location.href='{{route('auth.login')}}' @endauth">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </button>
 

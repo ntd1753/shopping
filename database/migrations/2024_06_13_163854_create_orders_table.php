@@ -19,6 +19,8 @@ return new class extends Migration
             $table->bigInteger('discount')->default(0);
             $table->bigInteger('total_amount');
             $table->string('status')->comment('đã đặt hàng, đã thanh toán, đang vận chuyển, giao hàng thành công');
+            $table->text('address');
+            $table->text('note');
             $table->timestamps();
         });
     }

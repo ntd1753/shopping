@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Post;
 use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -36,8 +37,10 @@ class HomeController extends Controller
         //lấy ra 16 sản phẩm đang giảm giá mới nhất
         $discountedProducts=Product::where('discount_persent', '>', 0)->orderby('updated_at','DESC')->take(16)->get();
         $banners=Banner::where('status','active')->get();
-        $parentCategories=Category::where('parent_id',0);
-        return view('user.content.home.index',['discountedProducts'=>$discountedProducts,'banners'=>$banners]);
+        $postCategories=Category::where('model_type','post')->pluck('id')->toArray();
+        $posts=Post::take(12)->whereIn('category_id', $postCategories)->get();
+
+        return view('user.content.home.index',['discountedProducts'=>$discountedProducts,'banners'=>$banners,'posts'=>$posts]);
     }
 
     function detailProduct($id){

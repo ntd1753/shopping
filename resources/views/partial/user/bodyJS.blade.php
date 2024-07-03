@@ -2,15 +2,38 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
+    //action khi hover vào thẻ sản phẩm
     function hoverProductCard(id){
-
-        document.getElementById(`product-${id}-action`).classList.remove('hidden');
-        document.getElementById(`product-${id}-action`).classList.add('translate-y-0');
+        const items = document.getElementsByClassName(`product-${id}-action`);
+        [...items].forEach((element) => {
+            element.classList.remove('hidden');
+            element.classList.add('translate-y-0');
+        });
     }
     function mouseOutProductCard(id){
-        document.getElementById(`product-${id}-action`).classList.remove('translate-y-0');
-        document.getElementById(`product-${id}-action`).classList.add('hidden');
+        const items = document.getElementsByClassName(`product-${id}-action`);
+        [...items].forEach((element) => {
+            element.classList.remove('translate-y-0');
+            element.classList.add('hidden');
+        });
+    }
+
+    //action khi hover vào danh mục sản phẩm trên header
+    function handleMouseOver(id) {
+        const element = document.getElementById('Dropdown-product-categories-'+id);
+        if (element) {
+            // Thêm class 'block' và loại bỏ class 'hidden'
+            element.classList.add('block');
+            element.classList.remove('hidden');
+        }
+    }
+    function handleMouseOut(id) {
+        const element = document.getElementById('Dropdown-product-categories-'+id);
+        if (element) {
+            // Thêm class 'hidden' và loại bỏ class 'block'
+            element.classList.add('hidden');
+            element.classList.remove('block');
+        }
     }
 </script>
 <script>
@@ -76,8 +99,8 @@
                         $('#cart-body').html(html)
                         $('#count-cart-product').text('(0 sản phẩm)');
                     }
-                    if($('#check-out-form')||$('cart-side-bar-body')){
-                        $('#check-out-form').remove();
+                    if($('#check-out-form')||$('#cart-side-bar-body')){
+                        $('#check-out-form').html(" ");
                         const htmlSideBar=`
                                     <div class="flex justify-center">
                             <div class="col-md-7">
@@ -104,22 +127,7 @@
 </script>
 <script>
 
-    function handleMouseOver(id) {
-        const element = document.getElementById('Dropdown-product-categories-'+id);
-        if (element) {
-            // Thêm class 'block' và loại bỏ class 'hidden'
-            element.classList.add('block');
-            element.classList.remove('hidden');
-        }
-    }
-    function handleMouseOut(id) {
-        const element = document.getElementById('Dropdown-product-categories-'+id);
-        if (element) {
-            // Thêm class 'hidden' và loại bỏ class 'block'
-            element.classList.add('hidden');
-            element.classList.remove('block');
-        }
-    }
+
     @auth()
     document.getElementById('logout-link').addEventListener('click', function(event) {
         event.preventDefault(); // Ngăn không cho trình duyệt chuyển hướng
@@ -189,15 +197,19 @@
                         }
                     }
                     $('#cart-side-bar-body').html(html);
-                    let checkoutform = `<hr class="text-black">
+                    let checkoutform = `
+                                            <hr class="text-black">
                                             <div class="grid grid-cols-2 text-black text-sm py-2">
                                                 <div>Tổng tiền</div>
                                                 <div id='total-price-side-bar' class="text-[#FE0000] font-bold ">${response.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}₫</div>
                                             </div>
-                                            <div class="w-full py-2">
+                                            <div class="w-full py-2"><a href="{{route('user.order.index')}}">
                                                 <button type="button" class="bg-[#3ba66b] w-full rounded-[4px] px-3 py-1.5 hover:bg-[#2E8053] text-center text-white ">
+
+
+
                                                     Thanh toán
-                                                </button>
+                                                </button></a>
                                             </div>`;
                     $('#check-out-form').html(checkoutform);
                 }
@@ -225,8 +237,6 @@
             }
         });
     });
-    @endauth
-
     function addCartByProductCard(id){
         $.ajax({
             url: '{{route('user.cart.store')}}', // Đảm bảo rằng route này được định nghĩa đúng trong Laravel
@@ -238,6 +248,7 @@
             },
             success: function(response) {
                 document.getElementById('count_cart_item').innerText= Object.keys(response).length;
+                $('#cart-button').click();
                 console.log(response)
             },
             error: function(xhr, status, error) {
@@ -246,5 +257,8 @@
             }
         });
     }
+    @endauth
+
+
 </script>
 

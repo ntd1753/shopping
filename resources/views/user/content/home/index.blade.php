@@ -53,8 +53,35 @@
                 </div>
             </div>
                 @include('user.content.home.productByCategory',['productCategories'=>$productCategories])
+            <div id="blog" class="mb-14">
+                <div class="block-title text-center w-full mb-5">
+                    <h2 class="text-4xl	font-bold hover:text-[#ffb416]"><a href="{{route('user.post.index')}}">Tin tức</a></h2>
+                    <div class="mx-auto mt-3"><img src="{{asset('frontend/images/bg-title-after.webp')}}" class="mx-auto"></div>
+                </div>
+                <div id="blog-item">
+                    <swiper-container class="mySwiper "  slides-per-view="4">
+                        @foreach($posts as  $item)
+                            <swiper-slide class="" >
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden relative h-[300px] rounded-[6px] border">
+                                    <div class="h-full flex items-center">
+                                        <img src="{{asset($item->images->path)}}" alt="Giỏ hoa quả có hoa" class="w-full h-48 object-cover">
+                                    </div>
+                                    <div id="blog-content" class="p-4 absolute bottom-0 h-1/2 text-white flex items-end w-full" style="background: linear-gradient(1deg, rgba(0, 0, 0, 0.65) 0, transparent)">
+                                        <div id="blog-info" class="">
+                                            <p class="text-base text-[16px] font-bold mt-2 text-left "><a href="{{route('user.post.detail',['id'=>$item->id])}}" class="hover:text-[#ffb416]">{{$item->name}}</a></p>
+                                            <p class="text-base text-[14px] mt-1 text-left">{{ date('d/m/Y', strtotime($item->updated_at)) }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </swiper-slide>
+                        @endforeach
+
+                    </swiper-container>
+                </div>
+            </div>
         </div>
     </div>
+
 
     <script>
 
