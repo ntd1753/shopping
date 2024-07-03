@@ -35,7 +35,16 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
+        @foreach($posts as $item)
+            <div id="preview-post-{{$item->id}}-modal-size" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        {!! $item->content !!}
+                    </div>
+                </div>
+            </div>
 
+        @endforeach
         <!-- END: Pagination -->
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->

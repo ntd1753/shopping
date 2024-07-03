@@ -2,9 +2,6 @@
     <meta charset="utf-8">
     <link href="{{asset('backend/dist/images/logo.svg')}}" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Tinker admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="LEFT4CODE">
     <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}" />
@@ -13,7 +10,9 @@
     <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
     <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
     <script src="https://cdn.tiny.cloud/1/ju9oytkgovjt42g1goz4bbx8ah5w7br05qbg396440cuw7ty/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+{{--    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />--}}
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
         tinymce.init({
@@ -39,7 +38,7 @@
                     onMessage: (api, message) => {
                         console.log(message)
                         let url = message.content;  // Lấy ra url của file ảnh
-                        url = url.replace(/^.*\/\/[^\/]+/, ''); // Xóa domain ảnh
+                        url = "/storage"+url.replace(/^.*\/\/[^\/]+/, ''); // Xóa domain ảnh
                         console.log(url);
                         message.content = url // Gán lại url cho ảnh
                         callback(message.content, { text: message.text })

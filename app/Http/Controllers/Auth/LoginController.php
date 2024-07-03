@@ -33,7 +33,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -93,13 +93,26 @@ class LoginController extends Controller
 
         // Script để tắt popup và chuyển hướng
         return "<script>
-                window.opener.location.href = '/home';
+                window.opener.location.href = '/';
                 window.close();
             </script>";
     }
     function logout()
     {
         Auth::logout();
-        redirect();
+        return redirect()->intended('/login');
+    }
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        \Log::info('Session before invalidate:', $request->session()->all());
+
+        // Invalidate the session
+        $request->session()->invalidate();
+
+        // Regenerate CSRF token
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.auth.login'); // Redirect to admin login page
     }
 }

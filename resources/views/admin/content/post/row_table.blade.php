@@ -1,6 +1,6 @@
 @foreach($posts as $item)
 
-    <tr class="intro-x">
+    <tr class="intro-x text-base">
         <td>
             <a href="" class="font-medium whitespace-nowrap">{{$item->name}}</a>
 {{--            <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Tags: Mothercare, Gini &amp; Jony, H&amp;M, Babyhug, Liliput</div>--}}
@@ -11,12 +11,13 @@
 
         </td>
         <td class="w-40">
-            <div class="flex items-center justify-center text-danger"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{$item->description}} </div>
+            <div class="flex items-center justify-center">  {!! $item->description !!} </div>
         </td>
         <td class="table-report__action w-56">
-            <div class="flex justify-center items-center">
-                <a class="flex items-center mr-3" href="{{route('admin.post.edit',["id"=>$item->id])}}"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                <a class="flex items-center text-danger" href="#" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal-{{$item->id}}"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+            <div class="flex justify-center items-center text-xl">
+                <a class="flex items-center mr-3" href="#" data-tw-toggle="modal" data-tw-target="#preview-post-{{$item->id}}-modal-size"><i class="fa-solid fa-newspaper"></i> </a>
+                <a class="flex items-center mr-3" href="{{route('admin.post.edit',["id"=>$item->id])}}"> <i class="fa-solid fa-pen-to-square"></i> </a>
+                <a class="flex items-center text-danger" href="#" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal-{{$item->id}}"> <i class="fa-solid fa-trash"></i> </a>
             </div>
         </td>
     </tr>

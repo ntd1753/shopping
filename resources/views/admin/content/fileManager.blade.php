@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12" id="fm-main-block">
-                <iframe id="fm" src="{{ url('/file-manager/fm-button') }}"class="w-full h-full"></iframe>
+                <iframe id="fm" src="{{ url('/file-manager/fm-button') }}" class="w-full h-full"></iframe>
             </div>
         </div>
     </div>

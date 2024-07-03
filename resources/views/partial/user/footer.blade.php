@@ -1,11 +1,11 @@
 
-<div class="footer  ">
+<div class="footer ">
     <div class="before-footer">
-        <img src="beforefooter.png" alt="" class="mx-auto">
+        <img src="{{asset('frontend/images/beforefooter.png')}}" alt="" class="mx-auto">
     </div>
     <div class="first-footer bg-[#3ba66b]">
         <div class="max-w-screen-xl	 mx-auto">
-            <div class="grid grid-cols-3  pt-12	">
+            <div class="grid grid-cols-3  pt-12	pb-12">
                 <div class="lg:mt-20 lg:px-12 text-white  text-center">
                     <h4 class="title-menu font-bold text-base mb-6	">
                         ĐĂNG KÍ NHẬN THÔNG TIN <i class="fa fa-plus hidden" aria-hidden="true"></i>
@@ -51,7 +51,7 @@
                     </div>
 
                 </div>
-                <div class="col-logo-footer text-white text-sm	lg:px-12 leading-6">
+                <div class="col-logo-footer text-white text-base	lg:px-12 leading-6">
 
                     <div class="logo-footer flex">
                         <a href="/" class="mx-auto">
@@ -61,9 +61,7 @@
                         </a>
                     </div>
                     <div class="text_introduction mt-4 text-center">
-                        Hệ thống trái cây nhập khẩu, đặc biệt trái cây xách tay trực tiếp từ Mỹ, Úc, Nhật, Hàn Quốc,
-                        Newzealand, Đài Loan...như Cherry, Nho sữa, giỏ trái cây và đầy đủ các mặt hàng trái cây
-                        nhập khẩu đáp ứng mọi yêu cầu khác hàng. Chất lượng chuẩn 100%, giá cả phải chăng
+                        {{ config('website.contact.description') }}
                         <br>
                         <b class="text-lg	">
                             Bán hàng chất lượng, uy tín, giá cả hợp lý
@@ -74,33 +72,26 @@
                                                                                               src="//bizweb.dktcdn.net/100/065/538/themes/838571/assets/bct.png?1708919610274"
                                                                                               style="max-width:60%;margin-top:20px"></a>
                 </div>
-                <div class="col-contact-footer text-white text-sm text-center  lg:mt-20 lg:px-12 leading-6">
+                <div class="col-contact-footer text-white text-base text-center  lg:mt-20 lg:px-12 leading-6">
                     <h4 class="title-menu font-bold text-base mb-6	">
                         LIÊN HỆ VỚI CHÚNG TÔI
                     </h4>
                     <span style="color:#fff"> Hộ kinh doanh: Trái cây nhập khẩu<br>
-                            MST 01B8011843 Do UBND quận Tây Hồ cấp ngày 14/03/2017<br></span>
+                            MST {{config('website.business_registration.tax_code')}}
+                        Do {{config('website.business_registration.issued_by')}}
+                        cấp ngày {{config('website.business_registration.issued_date')}}<br></span>
                     <ul>
-                        <li><strong>Địa chỉ 1:</strong> Số 95 Xuân La - Tây Hồ <br>- Hà Nội&nbsp;</li>
+                        @for($i=0;$i<count($shops);$i++)
+                            <li><strong>Địa chỉ {{$i+1}}:</strong>{{$shops[$i]->address}}</li>
+                        @endfor
 
-                        <li><strong>Địa chỉ 2:</strong> Số 97 Đào Tấn - Ba Đình - Hà Nội </li>
-
-                        <li><strong>Địa chỉ 3:</strong> Số 24B7 Phạm Ngọc Thạch - Đống Đa - HN</li>
-
-                        <li><strong>Địa chỉ 4:</strong> 45 P. Chùa Láng, Láng Thượng, Đống Đa, Hà Nội</li>
-                        <li><strong>Địa chỉ 5:</strong> 20 Tràng Thi- Hàng Trống- Hoàn Kiếm HN</li>
-
-
-
-
-                        <li><strong>Hotline:</strong> <a class="fone" href="tel:0862593599">0862593599</a></li>
+                        <li><strong>Hotline:</strong> <a class="fone" href="tel:0862593599">{{config('website.contact.hotline')}}</a></li>
                         <li>
-                            <strong>Email:</strong> <a href="mailto:hoa263mta@gmail.com">hoa263mta@gmail.com</a>
+                            <strong>Email:</strong> <a href="mailto:hoa263mta@gmail.com">{{config('website.contact.email')}}</a>
                         </li>
 
                     </ul>
                 </div>
-
             </div>
         </div>
         <div class="bg-[#359560] text-sm p-3">
@@ -117,19 +108,17 @@
                     <div class="col-end-footer">
                         <div class="social-buttons text-white text-center">
 
-                            <a href="https://www.facebook.com/profile.php?id=100090133351494"
+                            <a href="{{config('website.social_links.facebook')}}"
                                class="social-button facebook p-2" title="Theo dõi trên Facebook">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="social-button twitter p-2" title="Theo dõi trên Twitter">
+                            <a href="{{config('website.social_links.twitter')}}" class="social-button twitter p-2" title="Theo dõi trên Twitter">
                                 <i class="fa-brands fa-twitter"></i>
                             </a>
 
-
-                            <a href="#" class="social-button google p-2" title="Theo dõi trên Google">
+                            <a href="{{config('website.social_links.instagram')}}" class="social-button google p-2" title="Theo dõi trên Google">
                                 <i class="fa-brands fa-google"></i>
                             </a>
-
 
                             <a href="#" class="social-button youtube p-2" title="Theo dõi trên Youtube">
                                 <i class="fa-brands fa-youtube"></i>

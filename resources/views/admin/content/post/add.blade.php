@@ -2,48 +2,53 @@
 @section('content')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Add Category
+            Thêm bài viết
         </h2>
     </div>
-    <form action="{{route('admin.post.store')}}" method="POST">
+    <form action="{{route('admin.post.store')}}" method="POST" class="text-base">
         @csrf
         <div class="intro-y box p-5 mt-5">
             <div class=" p-5">
-                <div class="grid grid-cols-2 gap-4">
                     <div class="mt-5">
                         <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Post Category</div>
-                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Required</div>
+                                    <div class="font-medium">Danh mục bài viết</div>
                                 </div>
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <select id="category" class="form-select" name="category_id">
+                                <option value="null" selected> Chọn danh mục bài viết</option>
                                 @foreach($categories as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+                    </div>
+            </div>
+        </div>
+        <div class="intro-y box p-5 mt-5">
+            <div class=" p-5">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mt-5">
                         <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                        <div class="form-label xl:w-64 xl:!mr-10">
-                            <div class="text-left">
-                                <div class="flex items-center">
-                                    <div class="font-medium">Link Preview Image</div>
-                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Required</div>
+                            <div class="form-label xl:w-64 xl:!mr-10">
+                                <div class="text-left">
+                                    <div class="flex items-center">
+                                        <div class="font-medium">Link Preview Image</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full mt-3 xl:mt-0 flex-1 relative">
+                                <input type="text" name="images"  class="form-control" id="image_label">
+                                <div class="w-1/5 absolute top-0 right-0">
+                                    <button class="btn btn-secondary"  type="button" id="button-image" aria-label="Image" aria-describedby="button-image">Chọn file</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full mt-3 xl:mt-0 flex-1 relative">
-                            <input type="text" name="images"  class="form-control" id="image_label">
-                            <div class="w-1/5 absolute top-0 right-0">
-                                <button class="btn btn-secondary"  type="button" id="button-image" aria-label="Image" aria-describedby="button-image">Chọn file</button>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                     <div class="mt-5 ">
                         <div class="ml-5 font-medium w-full">
@@ -93,9 +98,12 @@
             {{--                    <input type="text" class="form-control  mt-2" id="content" name="content" placeholder="Nhập nội dung ....." >--}}
             <textarea class="form-control  mt-2" id="content" name="content" placeholder="Nhập nội dung ....." ></textarea>
         </div>
+
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
                 <button type="submit" class="btn py-3 btn-primary w-full md:w-52">Save</button>
             </div>
         </form>
-
+<script>
+    var inputId='';
+</script>
 @endsection
