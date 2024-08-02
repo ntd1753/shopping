@@ -1,12 +1,12 @@
 <nav class="side-nav">
     <a href="" class="intro-x flex items-center pl-5 pt-4 mt-3">
-        <img alt="Midone - HTML Admin Template" class="w-6" src="{{asset('backend/dist/images/logo.svg')}}">
-        <span class="hidden xl:block text-white text-lg ml-3"> Tinker </span>
+        <img alt="FRUIT-SHOP" class="w-6" src="//bizweb.dktcdn.net/100/065/538/themes/838571/assets/logo.png?1708919610274">
+        <span class="hidden xl:block text-white text-lg ml-3"> FRUITSHOP </span>
     </a>
     <div class="side-nav__devider my-6"></div>
     <ul>
         <li>
-            <a href="#" class="side-menu">
+            <a href="{{route('admin.index')}}" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                 <div class="side-menu__title">
                     Dashboard

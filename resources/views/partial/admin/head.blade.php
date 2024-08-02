@@ -1,8 +1,8 @@
 <head>
     <meta charset="utf-8">
-    <link href="{{asset('backend/dist/images/logo.svg')}}" rel="shortcut icon">
+    <link href="//bizweb.dktcdn.net/100/065/538/themes/838571/assets/logo.png?1708919610274" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
+    <title>FRUITSHOP</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}" />
     <!-- END: CSS Assets-->

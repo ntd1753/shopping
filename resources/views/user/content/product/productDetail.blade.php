@@ -110,12 +110,15 @@
                                         </button>
                                     </div>
                                     <div class="btn-buy px-2">
-                                        <button type="button"
-                                                class="text-white bg-[#fe0000] font-bold
+
+                                            <button type="button" id="button-buy"
+                                                    class="text-white bg-[#fe0000] font-bold
                                                  hover:bg-[#ffb416]  rounded-full text-xl
                                                  px-5 py-2.5 text-center me-2 mb-2">
-                                            Mua ngay
-                                        </button>
+                                                Mua ngay
+                                            </button>
+
+
                                     </div>
                                 </div>
                                 <div class="btn-add-to-cart w-full mt-2">
@@ -227,8 +230,8 @@
                     quantity: quantity
                 },
                 success: function(response) {
-                    // Xử lý khi gửi thành công
-                    console.log(response);
+                    document.getElementById('count_cart_item').innerText= Object.keys(response).length;
+                    $('#cart-button').click();
                 },
                 error: function(xhr, status, error) {
                     // Xử lý khi có lỗi
@@ -236,6 +239,26 @@
                 }
             });
         });
+        document.getElementById('button-buy').addEventListener('click', function () {
+            const quantity = document.getElementById('quantity-input').value;
+            console.log(document.getElementById('quantity-input').value);
+            $.ajax({
+                url: '{{route('user.cart.store')}}', // Đảm bảo rằng route này được định nghĩa đúng trong Laravel
+                type: 'POST',
+                data: {
+                    _token:`{{csrf_token()}}`,
+                    id: {{$productDetail->id}}, // Đảm bảo rằng biến này có giá trị hợp lệ
+                    quantity: quantity
+                },
+                success: function(response) {
+                    window.location.href="{{route('user.cart.index')}}";
 
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý khi có lỗi
+                    console.error(error);
+                }
+            });
+        });
     </script>
 @endsection

@@ -70,7 +70,7 @@
                 id: id,
             },
             success: function(response) {
-                console.log(response)
+                console.log(response);
                 if (Object.keys(response).length>0){
                     if($('#count-cart-product')||$(`#product-${id}`)||$('#provisional-price')||$('#total-price')){
                         $('#count-cart-product').text('('+(Object.keys(response.cart).length)+'sản phẩm'+')');
@@ -82,7 +82,10 @@
                             $(`#cart-bar-item-${id}`).remove();
                             $('#total-price-side-bar').text(response.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`₫`);
                         }
-                } else {
+                    $('#count_cart_item').text(Object.keys(response.cart).length);
+
+                }
+                else {
                     if($('#cart-body')||$('#count-cart-product')){
                         const html=`
                                     <div class="flex justify-center">
@@ -115,6 +118,8 @@
                         `;
                         $('#cart-side-bar-body').html(htmlSideBar);
                     }
+                    $('#count_cart_item').text(0);
+
                 }
 
             },
@@ -126,8 +131,6 @@
     }
 </script>
 <script>
-
-
     @auth()
     document.getElementById('logout-link').addEventListener('click', function(event) {
         event.preventDefault(); // Ngăn không cho trình duyệt chuyển hướng

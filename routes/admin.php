@@ -81,13 +81,16 @@ Route::namespace('admin')->group(function (){
             });
         });
         Route::group(['prefix' => 'order'], function (){
-            Route::get('/',[OrderController::class,'index'])->name("admin.order.index"); // danh sách danh mục
+            Route::get('/',[OrderController::class,'index'])->name("admin.order.index"); // danh sách
             Route::get('/detail/{id}', [OrderController::class,'detail'])->name('admin.order.detail'); // Trả về form thêm mới
             Route::post('/add', [OrderController::class,'store'])->name('admin.order.store'); // tạo mới category
-            Route::get('/edit/{id}', [OrderController::class,'edit'])->name('admin.order.edit'); // Trả về form edit category
-            Route::post('/edit/{id}', [OrderController::class,'update'])->name('admin.order.update'); // Update category
-            Route::get('/delete/{id}', [OrderController::class,'destroy'])->name('admin.order.destroy'); // delete category
+            Route::get('/edit/{id}', [OrderController::class,'edit'])->name('admin.order.edit'); // Trả về form edit
+            Route::post('/edit/{id}', [OrderController::class,'update'])->name('admin.order.update'); // Update
+            Route::get('/delete/{id}', [OrderController::class,'destroy'])->name('admin.order.destroy'); // delete
+            Route::post('/change-status', [OrderController::class,'changeStatus'])->name('admin.order.status.change');
         });
+        Route::get('/download-file', [ProductController::class,'downloadFile'])->name('admin.download.file');
+
     });
 
 });

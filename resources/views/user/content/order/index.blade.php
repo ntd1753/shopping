@@ -2,9 +2,12 @@
 <html lang="en">
 @include('partial.user.head')
 <body>
+<form action="{{route('user.order.checkout')}}" method="POST" id="order-form" class="">
 <div id="wrap" class="lg:container mx-auto grid grid-cols-12 gap-4">
 
+
         <div id="main" class="col-span-8 p-7">
+
             <div id="logo" class="w-full pb-5">
                     <img class="w-[88px] mx-auto" src="{!! asset('https://bizweb.dktcdn.net/100/065/538/themes/838571/assets/logo.png?1708919610274') !!}">
             </div>
@@ -13,7 +16,6 @@
                     <div id="delivery-info-header" class="mb-3 font-semibold text-xl">
                         <h2>Thông tin nhận hàng</h2>
                     </div>
-                    <form action="{{route('user.order.checkout')}}" method="POST" id="order-form">
                         @csrf
                     <div id="info-fieldset" class="text-base">
                         <div class="p-1.5">
@@ -43,8 +45,9 @@
                                 <label for="phone" class="block text-gray-600 mb-1">Số điện thoại</label>
                                 <div class="flex">
                                     <input
-                                        type="tel"
+                                        type="text"
                                         id="phone"
+                                        name="phone_number"
                                         class="w-full p-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-gray-500"
                                         placeholder="Số điện thoại" required
                                     />
@@ -130,7 +133,7 @@
                                 <div id="radio">
                                     <input type="radio" id="{{$item->info}}"
                                            class="input-radio text-black"
-                                           name="paymentMethod"
+                                           name="redirect"
                                            value="{{$item->id}}" required>
                                     <label>
                                         {{$item->name}}
@@ -224,8 +227,9 @@
             </div>
 
         </div>
-    </form>
 </div>
+</form>
+
 <script>
     // Lấy API tỉnh thành VN
     $(document).ready(function() {
@@ -256,20 +260,20 @@
     });
 
 </script>
-{{--<script>--}}
-{{--    // Lấy ra các đối tượng input radio và form--}}
-{{--    const radioCOD = document.getElementById('COD');--}}
-{{--    const radioVNPAY = document.getElementById('VNPAY');--}}
-{{--    const form = document.getElementById('order-form'); // Thay 'yourFormId' bằng ID của form thực tế của bạn--}}
+<script>
+    // Lấy ra các đối tượng input radio và form
+    const radioCOD = document.getElementById('COD');
+    const radioVNPAY = document.getElementById('VNPAY');
+    const form = document.getElementById('order-form'); // Thay 'yourFormId' bằng ID của form thực tế của bạn
 
-{{--    // Thêm sự kiện onchange vào các input radio--}}
-{{--    radioCOD.addEventListener('change', function() {--}}
-{{--        form.action = '{{route('user.order.checkout')}}'; // Đổi action của form khi chọn COD--}}
-{{--    });--}}
+    // Thêm sự kiện onchange vào các input radio
+    radioCOD.addEventListener('change', function() {
+        form.action = '{{route('user.order.checkout')}}'; // Đổi action của form khi chọn COD
+    });
 
-{{--    radioVNPAY.addEventListener('change', function() {--}}
-{{--        form.action = '{{route('user.payment.vnpay')}}'; // Đổi action của form khi chọn VNPAY--}}
-{{--    });--}}
-{{--</script>--}}
+    radioVNPAY.addEventListener('change', function() {
+        form.action = '{{route('user.payment.vnpay')}}'; // Đổi action của form khi chọn VNPAY
+    });
+</script>
 </body>
 </html>

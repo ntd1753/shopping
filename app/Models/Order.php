@@ -18,7 +18,8 @@ class Order extends Model
         'address',
         'total_amount',
         'note',
-        'status'
+        'status',
+        'phone_number'
     ];
     public function user(){
         return $this->hasOne(User::class,'id','user_id');

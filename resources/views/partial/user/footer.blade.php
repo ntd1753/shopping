@@ -99,7 +99,7 @@
                 <div class="grid grid-cols-3 ">
                     <div class="text-white">
                         <div>
-                            @ Bản quyền thuộc về Halafruit.vn | Cung cấp bởi Sapo
+                            @ Bản quyền bởi iro
                         </div>
                     </div>
                     <div class="col-middle-footer">

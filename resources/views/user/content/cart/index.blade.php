@@ -129,7 +129,7 @@
                 },
                 success: function(response) {
                     $('#provisional-price').text(response.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`₫`);
-                    $('.total-price').text(response.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`₫`);
+                    $('#total-price').text(response.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`₫`);
                 },
                 error: function(xhr, status, error) {
                     // Xử lý khi có lỗi

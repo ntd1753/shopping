@@ -5,6 +5,8 @@
             Thêm sản phẩm
         </h2>
     </div>
+
+
     <form action="{{route('admin.product.store')}}" method="POST" class="text-base">
         @csrf
         <div class="intro-y box p-5 mt-5">
@@ -24,7 +26,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="product-name" name="product-name" type="text" class="form-control" placeholder="Product name">
+                            <input id="product-name" name="product-name" type="text" class="form-control" placeholder="Product name" required>
                         </div>
                     </div>
                     <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -75,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="w-full mt-3 xl:mt-0 flex-1">
-                                <input id="barcode" type="text" class="form-control" name="barcode" placeholder="Product name">
+                                <input id="barcode" type="text" class="form-control" name="barcode" placeholder="Product name" required>
                             </div>
                         </div>
                         <div class="form-inline items-start flex-col xl:flex-row first:mt-0 first:pt-0">
@@ -87,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="w-full mt-3 xl:mt-0 flex-1">
-                                <input id="price" type="number" class="form-control" name="price" placeholder="Giá sản phẩm">
+                                <input id="price" type="number" class="form-control" name="price" placeholder="Giá sản phẩm" required>
                             </div>
                         </div>
                     </div>
@@ -101,7 +103,7 @@
                                 </div>
                             </div>
                             <div class="w-full mt-3 xl:mt-0 flex-1">
-                                <input id="barcode" type="text" class="form-control" name="quantity" placeholder="Số lượng">
+                                <input id="barcode" type="text" class="form-control" name="quantity" placeholder="Số lượng" required>
                             </div>
                         </div>
                         <div class="form-inline items-start flex-col xl:flex-row  first:mt-0 first:pt-0">
@@ -167,19 +169,19 @@
                         <div class="w-full  xl:mt-0 grid grid-cols-2 gap 4">
                             <div>
                                 <div class="relative">
-                                    <input type="text" name="image[]"  class="form-control" id="image_label-0">
+                                    <input type="text" name="image[]"  class="form-control" id="image_label-0" required>
                                     <div class="w-1/5 absolute top-0 right-0">
                                         <button class="btn btn-secondary"  type="button" id="button-image-0" aria-label="Image" aria-describedby="button-image" onclick="addImage(0)">Chọn file</button>
                                     </div>
                                 </div>
                                 <div class="relative mt-3">
-                                    <input type="text" name="image[]"  class="form-control" id="image_label-1">
+                                    <input type="text" name="image[]"  class="form-control" id="image_label-1" required>
                                     <div class="w-1/5 absolute top-0 right-0">
                                         <button class="btn btn-secondary"  type="button" id="button-image-1" aria-label="Image" aria-describedby="button-image" onclick="addImage(1)">Chọn file</button>
                                     </div>
                                 </div>
                                 <div class="relative mt-3">
-                                    <input type="text" name="image[]"  class="form-control" id="image_label-2">
+                                    <input type="text" name="image[]"  class="form-control" id="image_label-2" required>
                                     <div class="w-1/5 absolute top-0 right-0">
                                         <button class="btn btn-secondary"  type="button" id="button-image-2" aria-label="Image" aria-describedby="button-image" onclick="addImage(2)">Chọn file</button>
                                     </div>

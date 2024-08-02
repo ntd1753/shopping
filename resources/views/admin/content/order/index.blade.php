@@ -1,5 +1,7 @@
 @extends('layouts.adminLayout')
 @section('content')
+    <form method="POST" action="{{route('admin.order.status.change')}}" id="status-form">
+        @csrf
     <h2 class="intro-y text-2xl font-medium mt-10">
         Đơn hàng
     </h2>
@@ -11,40 +13,40 @@
                 </div>
                 <div class="ml-2">
                     <a href="{{route('admin.order.index')}}">
-                    <button class="btn  @if(isset($query['status'])) btn-outline-secondary @else btn-success   @endif   mr-1 mb-2">Tất cả</button>
+                    <button type="button" class="btn  @if(isset($query['status'])) btn-outline-secondary @else btn-success   @endif   mr-1 mb-2">Tất cả</button>
                     </a>
                 </div>
                 <div class="ml-2">
                     <a href="{{route('admin.order.index',['status'=>'da dat hang'])}}">
-                    <button class="btn   @if(isset($query['status']) && $query['status'] == 'da dat hang') btn-success @else btn-outline-secondary @endif  mr-1 mb-2">Đã đặt hàng</button>
+                    <button type="button"  class="btn   @if(isset($query['status']) && $query['status'] == 'da dat hang') btn-success @else btn-outline-secondary @endif  mr-1 mb-2">Đã đặt hàng</button>
                     </a>
                 </div>
                 <div class="ml-2">
                     <a href="{{route('admin.order.index',['status'=>'dang giao hang'])}}">
-                    <button class="btn @if(isset($query['status']) && $query['status'] == 'dang giao hang') btn-success @else  btn-outline-secondary @endif  mr-1 mb-2">Đang giao hàng</button>
+                    <button type="button" class="btn @if(isset($query['status']) && $query['status'] == 'dang giao hang') btn-success @else  btn-outline-secondary @endif  mr-1 mb-2">Đang giao hàng</button>
                     </a>
                 </div>
                 <div class="ml-2">
                     <a href="{{route('admin.order.index',['status'=>'giao hang thanh cong'])}}">
-                        <button class="btn  @if(isset($query['status']) && $query['status'] == 'giao hang thanh cong') btn-success @else  btn-outline-secondary @endif mr-1 mb-2">Đã Giao hàng</button>
+                        <button type="button" class="btn  @if(isset($query['status']) && $query['status'] == 'giao hang thanh cong') btn-success @else  btn-outline-secondary @endif mr-1 mb-2">Đã Giao hàng</button>
                     </a>
                 </div>
             </div>
             <div class="hidden xl:block mx-auto text-slate-500"></div>
             <div class="w-full xl:w-auto flex items-center mt-3 xl:mt-0">
-                <button class="btn btn-primary shadow-md mr-2"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </button>
-                <button class="btn btn-primary shadow-md mr-2"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </button>
                 <div class="dropdown">
-                    <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                        <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
+                    <button class="dropdown-toggle btn px-2 box" type="button" aria-expanded="false" data-tw-toggle="dropdown">
+                        <span class=" flex items-center justify-center"> <i data-lucide="arrow-left-right" class="w-4 h-4 mr-2"></i> Thay đổi trạng thái </span>
                     </button>
                     <div class="dropdown-menu w-40">
                         <ul class="dropdown-content">
                             <li>
-                                <a href="" class="dropdown-item"> <i data-lucide="arrow-left-right" class="w-4 h-4 mr-2"></i> Change Status </a>
+                                <a href="#" class="status-change dropdown-item" data-value="đang vận chuyển">Đang vận chuyển </a>
+
                             </li>
                             <li>
-                                <a href="" class="dropdown-item"> <i data-lucide="bookmark" class="w-4 h-4 mr-2"></i> Bookmark </a>
+                                <a href="#" class="status-change dropdown-item" data-value="giao hàng thành công">Giao Hàng Thành công</a>
+
                             </li>
                         </ul>
                     </div>
@@ -57,7 +59,7 @@
                 <thead>
                 <tr class="text-center">
                     <th class="whitespace-nowrap">
-                        <input class="form-check-input" type="checkbox">
+                        <input id="select-all" class="form-check-input" type="checkbox">
                     </th>
                     <th class="whitespace-nowrap">Id</th>
                     <th class="whitespace-nowrap">Ngày tạo</th>
@@ -77,6 +79,38 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
+        {{ $order->links('vendor.pagination.tailwind') }}
         <!-- END: Pagination -->
     </div>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownItems = document.querySelectorAll('.dropdown-content .status-change');
+
+            dropdownItems.forEach(function (item) {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    // Lấy giá trị từ data-value của thẻ a
+                    const value = item.getAttribute('data-value');
+
+                    // Tìm input radio có value tương ứng và chọn nó
+                    const radio = document.createElement('input');
+                    radio.type = 'hidden';
+                    radio.name = 'status';
+                    radio.value = value;
+                    document.getElementById('status-form').appendChild(radio);
+                    // Gửi form
+                    document.getElementById('status-form').submit();
+                });
+            });
+            const selectAll = document.getElementById('select-all');
+            selectAll.addEventListener('change', function () {
+                const checkBoxOrderId = document.getElementsByClassName('checkbox-order-id');
+                Array.from(checkBoxOrderId).forEach(function (item) {
+                    item.checked = selectAll.checked;
+                });
+            });
+        });
+    </script>
 @endsection

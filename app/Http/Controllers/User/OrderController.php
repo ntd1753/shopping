@@ -36,7 +36,7 @@ class OrderController extends Controller
     {
         $input=$request->all();
         $cartItems = \Cart::getContent();
-
+        //dd($input);
         foreach ($cartItems as $item) {
             $product = Product::find($item->id);
             if ($product->quantity < $item->quantity) {
@@ -48,8 +48,9 @@ class OrderController extends Controller
         $order = Order::create([
             'user_id' => auth()->id(),
             'total' => \Cart::getTotal(),
-            'payment_method_id' =>$input['paymentMethod'],
+            'payment_method_id' =>$input['redirect'],
             'note' =>$input['note'],
+            'phone_number'=>$input['phone_number'],
             'total_amount' => (int)$input['shippingMethod']+(int)\Cart::getTotal(),
             'address' => $input['city'].','.$input['district'].$input['address'],
             'status'=>'đã đặt hàng'
@@ -72,6 +73,9 @@ class OrderController extends Controller
         // Xóa giỏ hàng
         \Cart::session(Auth::user()->id)->clear();
 
-        return redirect()->route('home', $order->id)->with('success', 'Đặt hàng thành công!');
+        return redirect()->route('checkout',['id'=>$order->id])->with('success', 'Đặt hàng thành công!');
+    }
+    public function checkOutConfirm($id){
+        return view('user.content.order.checkout');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\OrderController;
@@ -53,5 +54,14 @@ Route::group(['prefix'=>'post'],function(){
     Route::get('/', [PostController::class, 'index'])->name('user.post.index');
     Route::get('detail/{id}', [PostController::class, 'detail'])->name('user.post.detail');
 });
+Route::group(['middleware'=>'auth:web'],function(){
+    Route::get('/checkouted/{id}', [OrderController::class, 'checkOutConfirm'])->name('checkout');
+    Route::group(['prefix'=>'account'],function(){
+        Route::get('/', [AccountController::class, 'index'])->name('user.account.index');
+        Route::get('/order', [AccountController::class, 'orderList'])->name('user.account.order');
+        Route::get('/change-password', [AccountController::class, 'showFormChangePassword'])->name('user.account.formPassword');
+        Route::post('/change-password', [AccountController::class, 'changePassword'])->name('user.account.changePassword');
+    });
 
+});
 Route::get('/search', [SearchController::class, 'search'])->name('user.search.index');

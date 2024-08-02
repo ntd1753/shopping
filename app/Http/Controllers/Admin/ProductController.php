@@ -78,8 +78,8 @@ class ProductController extends Controller
         $item['barcode'] = $input['barcode'];
         $item['price'] = $input['price'];
         $item['quantity'] = $input['quantity'];
-        $item['discount_persent'] = $input['discount_persent'];
-        $item['description'] = $input['product-description'];
+        $item['discount_persent'] = $input['discount_persent']??"0";
+        $item['description'] = $input['product-description']??"";
         $item->save();
     }
     protected function updateImage($image, $item){
@@ -97,12 +97,23 @@ class ProductController extends Controller
         return view('admin.content.product.add',['categories'=> $this->getProductCategories(), 'brands'=>Brand::all()]);
     }
     public function store(Request $request){
+        $validatedData = $request->validate([
+            'product-name' => 'required|string|max:255',
+            'category-id' => 'required|integer|exists:categories,id',
+            'brand-id' => 'required|integer|exists:brands,id',
+            'barcode' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'discount_persent' => 'numeric|min:0|max:100',
+            'image' => 'required',
+        ]);
         $input=$request->all();
+
         $product= new Product();
         $post= new Post();
-        $this->fillDataToPost($post,$input,false);
+        $this->fillDataToPost($post,$validatedData,false);
         $product['post_id']=$post['id'];
-        $this->fillDataToProduct($product,$input);
+        $this->fillDataToProduct($product,$validatedData);
         $this->saveImage($input["image"], $product);
         return redirect()->route('admin.product.index');
     }
@@ -152,4 +163,6 @@ class ProductController extends Controller
             return back()->withFailures($failures);
         }
     }
+
+
 }

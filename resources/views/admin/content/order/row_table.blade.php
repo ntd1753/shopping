@@ -1,7 +1,7 @@
 @foreach($order as $item)
     <tr class="text-center intro-x">
         <td class="w-10">
-            <input class="form-check-input" type="checkbox" name="id" value="{{$item->id}}">
+            <input class="form-check-input checkbox-order-id" type="checkbox" name="order_id[]" value="{{$item->id}}">
         </td>
         <td>{{$item->id}}</td>
         <td>{{$item->created_at}}</td>

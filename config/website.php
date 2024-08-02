@@ -19,9 +19,9 @@ return array (
   ),
   'contact' => 
   array (
-    'hotline' => '0862593599',
+    'hotline' => '0123456789',
     'email' => 'hoa263mta@gmail.com',
-    'zalo' => '035777777',
+    'zalo' => '02354888',
     'description' => 'Hệ thống trái cây nhập khẩu, đặc biệt trái cây xách tay trực tiếp từ Mỹ, Úc, Nhật, Hàn Quốc, Newzealand, Đài Loan...như Cherry, Nho sữa, giỏ trái cây và đầy đủ các mặt hàng trái cây nhập khẩu đáp ứng mọi yêu cầu khách hàng. Chất lượng chuẩn 100%, giá cả phải chăng',
   ),
   'social_links' => 

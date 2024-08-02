@@ -5,6 +5,15 @@
             Thêm bài viết
         </h2>
     </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{route('admin.post.store')}}" method="POST" class="text-base">
         @csrf
         <div class="intro-y box p-5 mt-5">

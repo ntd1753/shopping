@@ -91,10 +91,10 @@
 
                     <div class="col-span-2 grid items-center logo_contai relative">
                         <a href="/" class="logo hidden lg:block z-20 m-auto">
-                            <img class="w-[100px] h-[100px]" src="//bizweb.dktcdn.net/100/065/538/themes/838571/assets/logo.png?1708919610274" alt="Halafruit.vn">
+                            <img class="w-[100px] h-[100px]" src="//bizweb.dktcdn.net/100/065/538/themes/838571/assets/logo.png?1708919610274" >
                         </a>
                         <a href="/" class="logo block lg:hidden">
-                            <img src="//bizweb.dktcdn.net/100/065/538/themes/838571/assets/logomb.png?1708919610274" alt="Halafruit.vn">
+                            <img src="//bizweb.dktcdn.net/100/065/538/themes/838571/assets/logomb.png?1708919610274">
                         </a>
                         <div class="mx-auto bg-none hidden lg:block absolute bottom-[-29px] z-10">
                             <div class="affter-header mx-auto  grid-cols-12 items-center ">
@@ -193,7 +193,7 @@
                                             <ul class="text-sm text-black" aria-labelledby="account">
 
                                                 <li class="hover-target p-1 relative border-b-2 border-[#e5e6ec] hover:text-[#ffb416] text-center">
-                                                    <a href="#">Account</a>
+                                                    <a href="{{route('user.account.index')}}">Account</a>
                                                 </li>
                                                 <li class="hover-target p-1 text-sm relative hover:text-[#ffb416] text-center">
                                                     <a href="/logout" id="logout-link">Đăng xuất</a>

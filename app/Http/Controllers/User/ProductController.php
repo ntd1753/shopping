@@ -33,12 +33,12 @@ class ProductController extends Controller
             $products= Product::whereIn('category_id',$subCategoryIds);
             $this->filterProduct($products,$request);
 
-        return view('user.content.product.index',
-            [
-                'products'=>$products->paginate(15),
-                'category'=>$category,
-                'query'=>$request->query()
-            ]);
+            return view('user.content.product.index',
+                [
+                    'products'=>$products->paginate(15),
+                    'category'=>$category,
+                    'query'=>$request->query()
+                ]);
     }
     public function allProduct(Request $request){
         $products=Product::query();

@@ -85,10 +85,19 @@ class PostController extends Controller
     }
     public function store(Request $request): RedirectResponse
     {
+        $request = $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:items,slug',
+            'description' => 'nullable|string',
+            'content' => 'nullable|string',
+            'seo_title' => 'nullable|string|max:255',
+            'seo_keywords' => 'nullable|string|max:255',
+            'seo_description' => 'nullable|string|max:255',
+            'images' => 'required|string|max:255'
+        ]);
         $input = $request->all();
+
         $item = new Post();
-//        dd($input);
-//        exit();
         $this->fillDataToPost($item, $input, true);
         $images = $input["images"] ?? [];
         $this->saveImageIntoPost($images, $item);
